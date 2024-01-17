@@ -21,6 +21,9 @@ let modal3Open = ref(false);
             <img src="https://picsum.photos/seed/2/1280/960" alt="">
         </p>
     </modal>
-    <img-modal :open="modal3Open" @close="modal3Open = false" src="https://picsum.photos/seed/3/1280/960"
-        alt="blablabaasd"></img-modal>
+    <img-modal 
+    :open="modal3Open"
+    @close="modal3Open = false"
+    src="https://picsum.photos/seed/3/1280/960" 
+    alt="blablabaasd"></img-modal>
 </template>

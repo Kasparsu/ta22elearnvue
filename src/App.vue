@@ -4,6 +4,11 @@ import Tabs from './components/Tabs.vue';
 
 <template>
   <tabs></tabs>
-  <router-view></router-view>
+  <Suspense>
+    <router-view></router-view>
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
 </template>
 
