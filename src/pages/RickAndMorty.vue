@@ -6,9 +6,63 @@
                     <span>Previous</span>
                 </button>
             </p>
+
+            <p v-for="num in 3" :key="num" class="control">
+                <button class="button">
+                    <span>{{ num }}</span>
+                </button>
+            </p>
+
             <p class="control">
-                <button class="button is-static has-text-dark">
-                    <span>{{ page }}/{{ info.pages }}</span>
+                <button class="button is-static">
+                    <span>...</span>
+                </button>
+            </p>
+            
+            <p class="control ">
+                <button class="button">
+                    <span>{{ page-2 }}</span>
+                </button>
+            </p>
+            <p class="control ">
+                <button class="button">
+                    <span>{{ page-1 }}</span>
+                </button>
+            </p>
+            <p class="control ">
+                <button class="button is-primary">
+                    <span>{{ page }}</span>
+                </button>
+            </p>
+            <p class="control">
+                <button class="button">
+                    <span>{{ page+1 }}</span>
+                </button>
+            </p>
+            <p class="control">
+                <button class="button">
+                    <span>{{ page+2 }}</span>
+                </button>
+            </p>
+            <p class="control">
+                <button class="button is-static">
+                    <span>...</span>
+                </button>
+            </p>
+
+            <p class="control">
+                <button class="button">
+                    <span>{{ info.pages-2 }}</span>
+                </button>
+            </p>
+            <p class="control">
+                <button class="button">
+                    <span>{{ info.pages-1 }}</span>
+                </button>
+            </p>
+            <p class="control">
+                <button class="button">
+                    <span>{{ info.pages }}</span>
                 </button>
             </p>
             <p class="control">
