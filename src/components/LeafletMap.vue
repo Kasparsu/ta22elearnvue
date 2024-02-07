@@ -1,11 +1,11 @@
 <script setup>
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { onMounted, getCurrentInstance } from 'vue';
-const uid = getCurrentInstance().uid;
-console.log(uid);
+import { ref, onMounted } from 'vue';
+const props = defineProps(['center', 'zoom']);
+let mapEl = ref(null);
 onMounted(() => {
-    let map = L.map('map'+uid).setView([51.505, -0.09], 13);
+    let map = L.map(mapEl.value).setView(props.center, props.zoom);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -14,7 +14,7 @@ onMounted(() => {
 
 </script>
 <template>
-    <div :id="'map'+uid"></div>
+    <div ref="mapEl"></div>
 </template>
 
 <style scoped>
