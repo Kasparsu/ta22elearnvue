@@ -10,6 +10,7 @@ import ChuckNorris from './pages/ChuckNorris.vue';
 import RickAndMorty from './pages/RickAndMorty.vue';
 import CanvasExample from './pages/CanvasExample.vue';
 import MapExample from './pages/MapExample.vue';
+import Websocket from './pages/Websocket.vue';
 const routes = [
     { path: '/', component: Home, name: 'Home' },
     { path: '/todo', component: ToDo, name: 'ToDo' },
@@ -18,6 +19,7 @@ const routes = [
     { path: '/rickandmorty', component: RickAndMorty, name: 'Rick And Morty' },
     { path: '/canvas', component: CanvasExample, name: 'Canvas' },
     { path: '/maps', component: MapExample, name: 'Map Example' },
+    { path: '/ws', component: Websocket, name: 'Websocket' },
 ];
 
 const router = createRouter({

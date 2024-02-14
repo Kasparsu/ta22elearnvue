@@ -1,29 +1,37 @@
-<script setup>
-import { computed, reactive, ref } from 'vue';
+<script>
 import ItemList from '../components/ItemList.vue';
-const message = ref('');
-let i = 1;
-const items = reactive([
-    { id: i++, name: 'leib', isDone: false },
-    { id: i++, name: 'sai', isDone: true },
-    { id: i++, name: 'piim', isDone: false },
-    { id: i++, name: 'kommid', isDone: true },
-]);
-
-const doneItems = computed(() => {
-    return items.filter(item => item.isDone);
-});
-
-const toDoItems = computed(() => {
-    return items.filter(item => !item.isDone);
-});
-
-function add() {
-    if (message.value.trim() !== '') {
-        items.push({ id: i++, name: message.value.trim(), isDone: false });
+let i = 0;
+export default {
+    components: {
+        ItemList
+    },
+    data(){
+        return {
+            message: '',
+            items: [
+                {id: i++, name: 'piim', isDone: true},
+                {id: i++, name: 'sai', isDone: false},
+                {id: i++, name: 'Viin', isDone: true},
+            ]
+        };
+    },
+    methods: {
+        add(){
+            if (this.message.trim() !== '') {
+                this.items.push({ id: i++, name: this.message.trim(), isDone: false });
+            }
+            this.message = '';
+        }
+    },
+    computed: {
+        doneItems(){
+            return this.items.filter(item => item.isDone);
+        },
+        toDoItems(){
+            return this.items.filter(item => !item.isDone);
+        }
     }
-    message.value = '';
-}
+};
 </script>
 
 <template>
