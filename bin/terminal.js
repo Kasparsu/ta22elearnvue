@@ -4,12 +4,46 @@ function write(text) {
     process.stdout.write(text);
 }
 
-let date = new Date();
-write(date.toTimeString().substring(0,8));
+import readline from 'node:readline';
 
-setInterval(()=> {
-    date = new Date();
-    write('\x1B[8D'); // D => left C => right A => up B => down
-    write(date.toTimeString().substring(0,8));
-}, 100);
+readline.emitKeypressEvents(process.stdin);
+console.clear();
 
+write('@');
+
+process.stdin.on('keypress', (ch, key) => {
+    //console.log('got "keypress"', ch, key);
+    if (key &&  key.name == 'q') {
+        //process.stdin.pause();
+        process.exit();
+    }
+
+    if (key &&  key.name == 'w') {
+        write('\x1B[1D');
+        write(' ');
+        write('\x1B[1D');
+        write('\x1B[1A');
+        write('@');
+    }
+    if (key &&  key.name == 's') {
+        write('\x1B[1D');
+        write(' ');
+        write('\x1B[1D');
+        write('\x1B[1B');
+        write('@');
+    }
+    if (key && key.name == 'a') {
+        write('\x1B[2D');
+        write('@');
+        write(' ');
+        write('\x1B[1D');
+    }
+    if (key && key.name == 'd') {
+        write('\x1B[1D');
+        write(' ');
+        write('@');
+    }
+
+});
+
+process.stdin.setRawMode(true);
