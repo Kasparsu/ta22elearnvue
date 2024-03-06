@@ -1,10 +1,28 @@
-import ProgressBar from 'progress';
+import inquirer from 'inquirer';
 
-var bar = new ProgressBar('downloading [:bar] :rate/bps :percent :etas', { total: 100 });
-var timer = setInterval(function () {
-    bar.tick();
-    if (bar.complete) {
-        console.log('\ncomplete\n');
-        clearInterval(timer);
-    }
-}, 100);
+inquirer
+    .prompt([
+        { type: 'input', name: 'name', message: 'Whats your name?' },
+        { 
+            type: 'list',
+            name: 'food',
+            message: 'Whats your favorite food?',
+            choices: ['Pizza', 'Burger', 'Fries']
+        },
+        { 
+            type: 'checkbox',
+            name: 'foods',
+            message: 'What are your favorite foods?',
+            choices: ['Pizza', 'Burger', 'Fries']
+        },
+    ])
+    .then((answers) => {
+        console.log(answers);
+    })
+    .catch((error) => {
+        if (error.isTtyError) {
+            // Prompt couldn't be rendered in the current environment
+        } else {
+            // Something else went wrong
+        }
+    });
