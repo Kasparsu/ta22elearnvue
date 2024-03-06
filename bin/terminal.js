@@ -1,11 +1,10 @@
-import chalk from 'chalk';
-import boxen from 'boxen';
+import ProgressBar from 'progress';
 
-console.log(chalk.blue.bgGreen.underline('Hello world!'));
-
-console.log(boxen(chalk.blue.bgGreen.underline('unicorn'), {
-    padding: 1,
-    margin: 2,
-    borderStyle: 'double',
-    title: chalk.blue.bgGreen.underline('Hello')
-}));
+var bar = new ProgressBar('downloading [:bar] :rate/bps :percent :etas', { total: 100 });
+var timer = setInterval(function () {
+    bar.tick();
+    if (bar.complete) {
+        console.log('\ncomplete\n');
+        clearInterval(timer);
+    }
+}, 100);
