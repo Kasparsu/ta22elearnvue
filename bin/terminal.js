@@ -6,26 +6,27 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 if(!fs.existsSync('cache')){
     fs.mkdirSync('cache');
 }
+let baseUrl = 'https://wumo.com';
+let link = '/wumo/2024/03/13';
 
-
-for(let i = 2905; i>2895; i--){
-   
-    let cacheName = `cache/${i}.html`;
+for(let i = 0; i<10; i++){
+    let cacheName = link.replaceAll('/', '');
+    let cacheFile = `cache/${cacheName}.html`;
     let data;
-    if(!fs.existsSync(cacheName)){
+    if(!fs.existsSync(cacheFile)){
         await sleep(1000);
-        let res = await axios.get(`https://xkcd.com/${i}/`);
+        let res = await axios.get(baseUrl + link);
         data = res.data;
-        fs.writeFileSync(cacheName, data);
+        fs.writeFileSync(cacheFile, data);
         console.log('LIVE REQUEST!!!!');
     } else {
-        data = fs.readFileSync(cacheName);
+        data = fs.readFileSync(cacheFile);
     }
     //console.log(res.data);
     const $ = cheerio.load(data);
-    let img = $('div#comic>img');
+    let img = $('div.box-content>a>img');
     console.log(img.attr('src'));
-    console.log(img.attr('title'));
     console.log(img.attr('alt'));
-    
+    let a = $('a.prev');
+    link = a.attr('href');
 }
